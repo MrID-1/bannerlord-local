@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  bannerlord-coop:
+    build: .
+    container_name: bannerlord_coop_server
+    volumes:
+      # Sunucu çalıştırıcı dosyaları
+      - ./data:/server
+      # Oyun kayıtlarının silinmemesi için kalıcı veri alanı
+      - bannerlord_saves:/root/Documents/Mount and Blade II Bannerlord/CoopData/DedicatedServer/game saves/
+    ports:
+      - "4200:4200/udp"
+    restart: unless-stopped
+
+volumes:
+  bannerlord_saves:
