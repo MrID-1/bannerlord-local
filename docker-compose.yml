@@ -8,6 +8,8 @@ services:
       - RDP_SERVER=yes
       - DS_ACCEPT_EULA=true
       - DISPLAY=:0
+      - USER_UID=1000
+      - USER_GID=1000
       # default prefix lives in /home/wineuser/.wine, so don't override WINEPREFIX
     volumes:
       - /srv/bannerlord/home:/home/wineuser
