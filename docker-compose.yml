@@ -10,10 +10,10 @@ services:
       - RDP_SERVER=yes
       - DS_ACCEPT_EULA=true
       - DISPLAY=:0
+      # Tells container startup scripts to take ownership of /home/wineuser
+      - FORCE_OWNER=true
     volumes:
-      # Map server files & game executables
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
-      # Map the entire wineuser home folder directly to your external drive!
       - /mnt/external/bannerlord-server/DedicatedServer11/wine-home:/home/wineuser
     working_dir: /app/server
     ports:
