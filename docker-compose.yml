@@ -10,10 +10,11 @@ services:
       - RDP_SERVER=yes
       - DS_ACCEPT_EULA=true
       - DISPLAY=:0
-      # Keep all Wine data on the host volume mount
-      - WINEPREFIX=/app/server/wine-data
     volumes:
+      # Map server files & game executables
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
+      # Map the entire wineuser home folder directly to your external drive!
+      - /mnt/external/bannerlord-server/DedicatedServer11/wine-home:/home/wineuser
     working_dir: /app/server
     ports:
       - "7210:4200/udp"
