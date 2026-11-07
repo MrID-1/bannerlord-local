@@ -2,24 +2,25 @@ version: '3.8'
 
 services:
   bannerlord-manager:
-    image: lscr.io/linuxserver/wine:latest
+    image: scottyhardy/docker-wine:latest
     container_name: bannerlord_manager_gui
     restart: unless-stopped
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=UTC
+      - WINEARCH=win64
       - DISPLAY=:1
+      - DS_ACCEPT_EULA=true
     volumes:
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
+    working_dir: /app/server
     ports:
-      - "3000:3000"  # Web-based VNC GUI port
+      - "3000:3000"
       - "7210:7210/udp"
       - "7210:7210/tcp"
       - "2230:2230/udp"
+    network_mode: bridge
     command: |
       bash -c "
       Xvfb :1 -screen 0 1280x720x24 &
       fluxbox &
-      cd /app/server && wine BannerlordCoopServerManager.exe
+      wine BannerlordCoopServerManager.exe
       "
