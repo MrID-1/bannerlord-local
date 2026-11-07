@@ -10,10 +10,8 @@ services:
       - RDP_SERVER=yes
       - DS_ACCEPT_EULA=true
       - DISPLAY=:0
-      # Force Wine to build drive_c and user profiles inside this exact path
-      - WINEPREFIX=/app/server/wine-data
+      - WINEPREFIX=/app/server/.wine_prefix
     volumes:
-      # Maps server binaries AND the wine-data folder to your physical host drive
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
     working_dir: /app/server
     ports:
