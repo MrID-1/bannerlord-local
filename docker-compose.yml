@@ -5,6 +5,7 @@ services:
     image: scottyhardy/docker-wine:latest
     container_name: bannerlord_coop_server
     restart: unless-stopped
+    user: "1000:1000"
     environment:
       - WINEARCH=win64
       - RDP_SERVER=yes
@@ -14,8 +15,6 @@ services:
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
       - /mnt/external/bannerlord-server/DedicatedServer11/wine-home:/home/wineuser
     working_dir: /app/server
-    # Pass --force-owner directly to entrypoint script
-    command: ["/usr/bin/entrypoint", "--force-owner"]
     ports:
       - "7210:4200/udp"
       - "7210:4200/tcp"
