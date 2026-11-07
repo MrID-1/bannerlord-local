@@ -11,10 +11,10 @@ services:
       - DS_ACCEPT_EULA=true
       - DISPLAY=:0
     volumes:
-      # Map server files & game binaries
+      # Map server binaries
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
-      # Map ONLY the wine prefix/registry/C: drive folder to the host
-      - /mnt/external/bannerlord-server/DedicatedServer11/wine-data:/home/wineuser/.wine
+      # Map ONLY drive_c so Wine doesn't attempt to chown the entire prefix mount point
+      - /mnt/external/bannerlord-server/DedicatedServer11/wine-data/drive_c:/home/wineuser/.wine/drive_c
     working_dir: /app/server
     ports:
       - "7210:4200/udp"
