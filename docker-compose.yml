@@ -11,11 +11,10 @@ services:
       - DS_ACCEPT_EULA=true
       - DISPLAY=:0
     volumes:
-      # Game binaries mounted from external storage
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
-      # Wine user home directory on native Linux host partition
       - /var/bannerlord-wine/wine-home:/home/wineuser
     working_dir: /app/server
+    command: ["/usr/bin/entrypoint", "--force-owner"]
     ports:
       - "7210:4200/udp"
       - "7210:4200/tcp"
