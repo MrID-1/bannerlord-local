@@ -14,7 +14,7 @@ services:
     working_dir: /app/server
     command: wine /app/server/BannerlordCoopServer.exe --accept-eula
     ports:
-      - "7210:7210/udp"
-      - "7210:7210/tcp"
+      - "7210:4200/udp"
+      - "7210:4200/tcp"
       - "2230:2230/udp"
     network_mode: bridge
