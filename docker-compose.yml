@@ -11,10 +11,10 @@ services:
       - DS_ACCEPT_EULA=true
       - DISPLAY=:0
     volumes:
-      # Map server files & game binaries from external host path
+      # Map server files & game binaries from external storage
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
-      # Map Wine environment to a native persistent Docker volume
-      - wine_prefix:/home/wineuser/.wine
+      # Map the full isolated wineuser home directory on native host storage
+      - /var/bannerlord-wine/wine-home:/home/wineuser
     working_dir: /app/server
     ports:
       - "7210:4200/udp"
@@ -22,6 +22,3 @@ services:
       - "2230:2230/udp"
       - "3389:3389"
     network_mode: bridge
-
-volumes:
-  wine_prefix:
