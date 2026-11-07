@@ -11,9 +11,9 @@ services:
       - DS_ACCEPT_EULA=true
       - DISPLAY=:0
     volumes:
-      # Map server files & game binaries from external storage
+      # Game binaries mounted from external storage
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
-      # Map the full isolated wineuser home directory on native host storage
+      # Persistent Wine home directory mounted on internal Linux host storage
       - /var/bannerlord-wine/wine-home:/home/wineuser
     working_dir: /app/server
     ports:
