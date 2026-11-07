@@ -10,11 +10,12 @@ services:
       - RDP_SERVER=yes
       - DS_ACCEPT_EULA=true
       - DISPLAY=:0
+      # Force Wine to build drive_c and user profiles inside this exact path
+      - WINEPREFIX=/app/server/wine-data
     volumes:
+      # Maps server binaries AND the wine-data folder to your physical host drive
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
-      - /var/bannerlord-wine/wine-home:/home/wineuser
     working_dir: /app/server
-    command: ["/usr/bin/entrypoint", "--force-owner"]
     ports:
       - "7210:4200/udp"
       - "7210:4200/tcp"
