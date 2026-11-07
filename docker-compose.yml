@@ -19,5 +19,5 @@ services:
       - "7210:4200/udp"
       - "7210:4200/tcp"
       - "2230:2230/udp"
-      - "8080:8080"  # Web GUI Port
+      - "8888:8080"  # Web GUI Port
     network_mode: bridge
