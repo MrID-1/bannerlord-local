@@ -14,7 +14,6 @@ services:
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
       - wine_prefix:/home/wineuser/.wine
     working_dir: /app/server
-    command: bash -c "sleep 10 && wine /app/server/BannerlordCoopServerManager.exe --accept-eula"
     ports:
       - "7210:4200/udp"
       - "7210:4200/tcp"
