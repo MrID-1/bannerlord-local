@@ -13,11 +13,9 @@ services:
     volumes:
       # Game binaries mounted from external storage
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
-      # Persistent Wine home directory mounted on internal Linux host storage
+      # Wine user home directory on native Linux host partition
       - /var/bannerlord-wine/wine-home:/home/wineuser
     working_dir: /app/server
-    # Pass --force-owner directly to bypass the UNKNOWN:UNKNOWN check
-    command: ["/usr/bin/entrypoint", "--force-owner"]
     ports:
       - "7210:4200/udp"
       - "7210:4200/tcp"
