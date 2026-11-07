@@ -2,16 +2,18 @@ version: '3.8'
 
 services:
   bannerlord-coop:
-    build: .
+    image: scottyhardy/docker-wine:latest
     container_name: bannerlord_coop_server
-    volumes:
-      # Sunucu çalıştırıcı dosyaları
-      - ./data:/server
-      # Oyun kayıtlarının silinmemesi için kalıcı veri alanı
-      - bannerlord_saves:/root/Documents/Mount and Blade II Bannerlord/CoopData/DedicatedServer/game saves/
-    ports:
-      - "4200:4200/udp"
     restart: unless-stopped
-
-volumes:
-  bannerlord_saves:
+    environment:
+      - WINEARCH=win64
+      - DISPLAY=:0
+    volumes:
+      - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
+    working_dir: /app/server
+    command: wine /app/server/BannerlordCoopServer.exe
+    ports:
+      - "7210:7210/udp"
+      - "7210:7210/tcp"
+      - "2230:2230/udp"
+    network_mode: bridge
