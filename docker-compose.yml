@@ -10,9 +10,10 @@ services:
       - RDP_SERVER=yes
       - DS_ACCEPT_EULA=true
       - DISPLAY=:0
+      # Keep all Wine data on the host volume mount
+      - WINEPREFIX=/app/server/wine-data
     volumes:
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
-      - wine_prefix:/home/wineuser/.wine
     working_dir: /app/server
     ports:
       - "7210:4200/udp"
@@ -20,6 +21,3 @@ services:
       - "2230:2230/udp"
       - "3389:3389"
     network_mode: bridge
-
-volumes:
-  wine_prefix:
