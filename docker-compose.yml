@@ -10,12 +10,12 @@ services:
       - RDP_SERVER=yes
       - DS_ACCEPT_EULA=true
       - DISPLAY=:0
-      # Tells container startup scripts to take ownership of /home/wineuser
-      - FORCE_OWNER=true
     volumes:
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
       - /mnt/external/bannerlord-server/DedicatedServer11/wine-home:/home/wineuser
     working_dir: /app/server
+    # Pass --force-owner directly to entrypoint script
+    command: ["/usr/bin/entrypoint", "--force-owner"]
     ports:
       - "7210:4200/udp"
       - "7210:4200/tcp"
