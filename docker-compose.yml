@@ -10,13 +10,18 @@ services:
       - RDP_SERVER=yes
       - DS_ACCEPT_EULA=true
     volumes:
+      # Game server executable & server configurations from host
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
-      - /mnt/external/bannerlord-server/DedicatedServer11/wine-data:/home/wineuser/.wine
+      # Persistent Wine configuration directory
+      - wine_prefix:/home/wineuser/.wine
     working_dir: /app/server
     command: bash -c "sleep 5 && DISPLAY=:0 wine /app/server/BannerlordCoopServer.exe --accept-eula"
     ports:
       - "7210:4200/udp"
       - "7210:4200/tcp"
       - "2230:2230/udp"
-      - "3389:3389"
+      - "3389:3389"  # RDP Port
     network_mode: bridge
+
+volumes:
+  wine_prefix:
