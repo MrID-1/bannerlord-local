@@ -8,6 +8,8 @@ services:
     environment:
       - WINEARCH=win64
       - DISPLAY=:0
+      - VNC_SERVER=1
+      - ENABLE_VNC=true
       - DS_ACCEPT_EULA=true
     volumes:
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
@@ -17,4 +19,5 @@ services:
       - "7210:4200/udp"
       - "7210:4200/tcp"
       - "2230:2230/udp"
+      - "8080:8080"  # Web GUI Port
     network_mode: bridge
