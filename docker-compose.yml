@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   bannerlord-coop:
-    image: dorowu/ubuntu-desktop-lxde-vnc:latest
+    image: scottyhardy/docker-remote-desktop:latest
     container_name: bannerlord_coop_server
     restart: unless-stopped
     environment:
@@ -10,11 +10,9 @@ services:
       - DS_ACCEPT_EULA=true
     volumes:
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
-    working_dir: /app/server
-    command: bash -c "wine /app/server/BannerlordCoopServer.exe --accept-eula"
     ports:
       - "7210:4200/udp"
       - "7210:4200/tcp"
       - "2230:2230/udp"
-      - "8888:80"  # Exposes the container's built-in web desktop to host port 8888
+      - "3389:3389"  # Standard RDP Port mapped to host
     network_mode: bridge
