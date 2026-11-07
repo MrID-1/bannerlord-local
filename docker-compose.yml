@@ -5,15 +5,16 @@ services:
     image: scottyhardy/docker-wine:latest
     container_name: bannerlord_coop_server
     restart: unless-stopped
-    user: "1000:1000"
     environment:
       - WINEARCH=win64
       - RDP_SERVER=yes
       - DS_ACCEPT_EULA=true
       - DISPLAY=:0
     volumes:
+      # Map server files & game binaries
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
-      - /mnt/external/bannerlord-server/DedicatedServer11/wine-home:/home/wineuser
+      # Map ONLY the wine prefix/registry/C: drive folder to the host
+      - /mnt/external/bannerlord-server/DedicatedServer11/wine-data:/home/wineuser/.wine
     working_dir: /app/server
     ports:
       - "7210:4200/udp"
