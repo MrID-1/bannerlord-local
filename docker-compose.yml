@@ -2,12 +2,13 @@ version: '3.8'
 
 services:
   bannerlord-coop:
-    image: ich777/novnc-wine:latest
+    image: scottyhardy/docker-remote-desktop:latest
     container_name: bannerlord_coop_server
     restart: unless-stopped
     environment:
-      - CUSTOM_RES_W=1280
-      - CUSTOM_RES_H=720
+      - WINEARCH=win64
+      - DISPLAY=:0
+      - DS_ACCEPT_EULA=true
     volumes:
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
     working_dir: /app/server
@@ -16,5 +17,5 @@ services:
       - "7210:4200/udp"
       - "7210:4200/tcp"
       - "2230:2230/udp"
-      - "8888:8080"  # Web GUI access port
+      - "8888:8080"  # Web GUI (noVNC) Port
     network_mode: bridge
