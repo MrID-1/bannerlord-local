@@ -2,17 +2,21 @@ version: '3.8'
 
 services:
   bannerlord-coop:
-    image: scottyhardy/docker-remote-desktop:latest
+    image: scottyhardy/docker-wine:latest
     container_name: bannerlord_coop_server
     restart: unless-stopped
     environment:
       - WINEARCH=win64
+      - RDP_SERVER=yes
       - DS_ACCEPT_EULA=true
     volumes:
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
+      - /mnt/external/bannerlord-server/DedicatedServer11/wine-data:/home/wineuser/.wine
+    working_dir: /app/server
+    command: bash -c "sleep 5 && DISPLAY=:0 wine /app/server/BannerlordCoopServer.exe --accept-eula"
     ports:
       - "7210:4200/udp"
       - "7210:4200/tcp"
       - "2230:2230/udp"
-      - "3389:3389"  # Standard RDP Port mapped to host
+      - "3389:3389"
     network_mode: bridge
