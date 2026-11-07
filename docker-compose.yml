@@ -16,6 +16,8 @@ services:
       # Persistent Wine home directory mounted on internal Linux host storage
       - /var/bannerlord-wine/wine-home:/home/wineuser
     working_dir: /app/server
+    # Pass --force-owner directly to bypass the UNKNOWN:UNKNOWN check
+    command: ["/usr/bin/entrypoint", "--force-owner"]
     ports:
       - "7210:4200/udp"
       - "7210:4200/tcp"
