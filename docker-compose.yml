@@ -9,11 +9,12 @@ services:
       - WINEARCH=win64
       - RDP_SERVER=yes
       - DS_ACCEPT_EULA=true
+      - DISPLAY=:0
     volumes:
       - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
       - wine_prefix:/home/wineuser/.wine
     working_dir: /app/server
-    command: bash -c "sleep 10 && DISPLAY=:0 wine explorer /desktop=wine,1280x720 /app/server/BannerlordCoopServer.exe --accept-eula"
+    command: bash -c "sleep 10 && wine /app/server/BannerlordCoopServerManager.exe --accept-eula"
     ports:
       - "7210:4200/udp"
       - "7210:4200/tcp"
