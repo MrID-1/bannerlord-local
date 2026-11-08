@@ -13,7 +13,7 @@ services:
       # default prefix lives in /home/wineuser/.wine, so don't override WINEPREFIX
     volumes:
       - /srv/bannerlord/home:/home/wineuser
-      - /mnt/external/bannerlord-server/DedicatedServer11:/app/server
+      - /storage/bannerlord-server/DedicatedServer11:/app/server
     working_dir: /app/server
     ports:
       - "7210:4200/udp"
